@@ -37,13 +37,9 @@ export default function ChatPage(): React.JSX.Element {
         return response.json();
       })
       .then(data => {
-        const assistantMessage: Message = { role: 'assistant', content: data.messageText };
+        const assistantMessage: Message = { role: 'assistant', content: data.answer };
         setMessages(prev => [...prev, assistantMessage]);
-        setTokens({
-          prompt: data.promptTokens ?? 0,
-          completion: data.completionTokens ?? 0,
-          total: data.totalTokens ?? 0
-        });
+        setTokens(data.tokens);
       })
       .catch(err => {
         setError(err instanceof Error ? err.message : 'Unknown error');
