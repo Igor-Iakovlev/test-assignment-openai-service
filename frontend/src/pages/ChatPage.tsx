@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Input from '../components/Input';
 
-import styles from './ChatPage.module.scss';
 import Chat from '../components/Chat';
+import Input from '../components/Input';
 import TokensInfo from '../components/TokensInfo';
 import { Message, TokenUsage } from '../types/Types';
+
+import styles from './ChatPage.module.scss';
 
 export default function ChatPage(): React.JSX.Element {
   const [inputValue, setInputValue] = useState<string>('');

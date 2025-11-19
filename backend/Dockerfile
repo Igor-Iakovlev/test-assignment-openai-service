@@ -12,17 +12,12 @@ RUN apt-get update \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && docker-php-ext-install zip curl \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*;
 
 WORKDIR /var/www/html
 COPY . .
-RUN if [ -f composer.json ]; then \
-      echo "Installing Composer dependencies..." && \
-      composer install --no-dev --optimize-autoloader --no-scripts && \
-      echo "Composer install complete. Vendor size:" && ls -la vendor/autoload.php || echo "Autoload not found!"; \
-    else \
-      echo "No composer.json found!"; \
-    fi
+RUN composer install --no-dev --optimize-autoloader --no-scripts \
+    && rm -f composer.json composer.lock;
 
 RUN chown -R www-data:www-data /var/www/html
 
