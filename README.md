@@ -53,15 +53,15 @@ docker-compose down
 
 ```text
 chatgpt-assistant/
-├── backend/              # PHP 8.3 + Symfony + OpenAI Client
+├── backend/              # PHP 8.3
 │   ├── Dockerfile
 │   ├── composer.json
 │   ├── index.php
-│   └── src/              # Controllers/config
+│   └── src/
 ├── frontend/             # React 19 + TypeScript + SCSS
 │   ├── Dockerfile
 │   ├── package.json
-│   └── src/              # Components/pages
+│   └── src/
 ├── docker-compose.yml
 └── README.md
 ```
