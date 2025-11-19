@@ -1,0 +1,23 @@
+{
+    "name": "igoriakovlev/test-assignment-backend",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "backend\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/routing": "^7.3",
+        "php-di/php-di": "^7.1",
+        "openai-php/client": "^0.18.0",
+        "symfony/http-client": "^7.3",
+        "nyholm/psr7": "^1.8",
+        "symfony/http-foundation": "^7.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
