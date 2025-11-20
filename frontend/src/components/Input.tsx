@@ -19,7 +19,7 @@ export default function Input({
   onSubmit,
   disabled = false,
   className = '',
-  placeholder = 'Enter your message...'
+  placeholder = "Enter your message..."
 }: InputProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

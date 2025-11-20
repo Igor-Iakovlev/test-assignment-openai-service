@@ -1,18 +1,20 @@
 services:
   backend:
-    build: ./backend
-    container_name: backend
+    build:
+      context: ./backend
+      args:
+        - PHP_ENV=${PHP_ENV:-production}
+    container_name: openai_backend
     ports:
       - "8000:80"
     environment:
-      - PHP_ENV=development
       - OPENAI_API_KEY=your_key_here
     networks:
       - app-network
 
   frontend:
     build: ./frontend
-    container_name: frontend
+    container_name: openai_frontend
     ports:
       - "8080:80"
     depends_on:

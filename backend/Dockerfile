@@ -1,5 +1,7 @@
 FROM php:8.3-apache
 
+ARG PHP_ENV
+
 RUN a2enmod rewrite
 
 RUN apt-get update \
@@ -16,8 +18,13 @@ RUN apt-get update \
 
 WORKDIR /var/www/html
 COPY . .
-RUN composer install --no-dev --optimize-autoloader --no-scripts \
-    && rm -f composer.json composer.lock;
+
+RUN if [ "$PHP_ENV" = "development" ]; then \
+        composer install --optimize-autoloader --no-scripts; \
+    else \
+        composer install --no-dev --optimize-autoloader --no-scripts && \
+        rm -f composer.json composer.lock; \
+    fi
 
 RUN chown -R www-data:www-data /var/www/html
 

@@ -19,6 +19,7 @@ readonly class ChatCompletionController
     public function createChatCompletion(array $messages, string $model = 'gpt-4o-mini'): Response
     {
         $result = $this->service->createChatCompletion($messages, $model);
+
         $tokensUsage = new TokensUsage(
             $result->usage->promptTokens,
             $result->usage->completionTokens,
