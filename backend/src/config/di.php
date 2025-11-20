@@ -20,10 +20,7 @@ $containerBuilder->addDefinitions([
             ->make();
     },
     ChatCompletionsService::class => create(ChatCompletionsService::class)
-        ->constructor(
-            get(Client::class),
-            get(LoggerInterface::class),
-        ),
+        ->constructor(get(Client::class)),
     ChatCompletionController::class => autowire(ChatCompletionController::class),
     LoggerInterface::class => function() {
         $logger = new Logger('openai_api');

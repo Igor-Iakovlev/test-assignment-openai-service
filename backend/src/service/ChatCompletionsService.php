@@ -5,16 +5,10 @@ namespace backend\service;
 use backend\exception\OpenAiResponseException;
 use OpenAI\Contracts\ClientContract;
 use OpenAI\Responses\Chat\CreateResponse;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
 
-class ChatCompletionsService
+readonly class ChatCompletionsService
 {
-    use LoggerAwareTrait;
-
-    public function __construct(private readonly ClientContract $client, LoggerInterface $logger) {
-        $this->setLogger($logger);
-    }
+        public function __construct(private ClientContract $client) {}
 
     public function createChatCompletion($messages, $model = 'gpt-4o-mini'): CreateResponse
     {

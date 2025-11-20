@@ -3,23 +3,13 @@
 namespace backend\tests\Service;
 
 use backend\service\ChatCompletionsService;
-use Monolog\Logger;
 use OpenAI\Responses\Chat\CreateResponse;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
 use RuntimeException;
 use OpenAI\Testing\ClientFake;
 
 class ChatCompletionsServiceTest extends TestCase
 {
-    private LoggerInterface $logger;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->logger = $this->createMock(Logger::class);
-    }
-
     public function testCreateChatCompletionSuccess(): void
     {
         $messages = [['role' => 'user', 'content' => 'Hello']];
@@ -40,7 +30,7 @@ class ChatCompletionsServiceTest extends TestCase
 
         $mockResponse = CreateResponse::fake($fakeData);
         $client = new ClientFake([$mockResponse]);
-        $service = new ChatCompletionsService($client, $this->logger);
+        $service = new ChatCompletionsService($client);
 
         $result = $service->createChatCompletion($messages);
         $this->assertEquals(10, $result->usage->promptTokens);
@@ -67,7 +57,7 @@ class ChatCompletionsServiceTest extends TestCase
         ];
         $mockResponse = CreateResponse::fake($fakeData);
         $client = new ClientFake([$mockResponse]);
-        $service = new ChatCompletionsService($client, $this->logger);
+        $service = new ChatCompletionsService($client);
 
         $this->expectException(RuntimeException::class);
         $service->createChatCompletion($messages);
