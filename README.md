@@ -49,6 +49,15 @@ Stop the project:
 docker-compose down
 ```
 
+## Running Tests (Backend)
+To run PHPUnit tests for the backend, build in development mode (includes dev dependencies) and execute inside the container:
+```bash
+docker-compose build backend --build-arg PHP_ENV=development
+docker-compose up -d backend
+docker-compose exec backend sh
+./vendor/bin/phpunit tests
+```
+
 ## Project Structure
 
 ```text
@@ -65,3 +74,7 @@ chatgpt-assistant/
 ├── docker-compose.yml
 └── README.md
 ```
+
+## License
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
