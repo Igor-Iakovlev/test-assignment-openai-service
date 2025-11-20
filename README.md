@@ -24,7 +24,7 @@ Built with **PHP (backend)** + **React (frontend)** inside **Docker**.
 
    ```yaml
    environment:
-     OPENAI_API_KEY: sk-your-key-here
+      - OPENAI_API_KEY=your_key_here
    ```
 
 3. **Run the project**
@@ -66,7 +66,8 @@ chatgpt-assistant/
 │   ├── Dockerfile
 │   ├── composer.json
 │   ├── index.php
-│   └── src/
+│   ├── src/
+|   └── tests/            # PHPUnit
 ├── frontend/             # React 19 + TypeScript + SCSS
 │   ├── Dockerfile
 │   ├── package.json
