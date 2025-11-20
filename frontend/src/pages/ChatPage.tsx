@@ -29,7 +29,6 @@ export default function ChatPage(): React.JSX.Element {
       body: JSON.stringify({ messages: [...messages, userMessage] }),
     })
       .then(response => {
-        console.log(response);
         if (!response.ok) {
           return response.text().then(errorText => {
             throw new Error(errorText || `${response.status}: ${response.statusText}`);
